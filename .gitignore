@@ -52,3 +52,4 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+/TPWinForm_equipo-12c/.vs/TPWinForm_equipo-12c.slnx
