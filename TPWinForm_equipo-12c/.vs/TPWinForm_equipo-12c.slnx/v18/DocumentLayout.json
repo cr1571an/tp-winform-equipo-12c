@@ -1,12 +1,7 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Aldana\\Escritorio\\PROG III\\tp-winform-equipo-12c\\TPWinForm_equipo-12c\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{6AE1A4A6-CE18-4130-B806-B18ECF074A1E}|WindowsFormsApp\\WindowsFormsApp.csproj|d:\\aldana\\escritorio\\prog iii\\tp-winform-equipo-12c\\tpwinform_equipo-12c\\windowsformsapp\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{6AE1A4A6-CE18-4130-B806-B18ECF074A1E}|WindowsFormsApp\\WindowsFormsApp.csproj|solutionrelative:windowsformsapp\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    }
-  ],
+  "WorkspaceRootPath": "C:\\Users\\54114\\OneDrive\\Escritorio\\c#\\TP\\tp-winform-equipo-12c\\TPWinForm_equipo-12c\\",
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -14,19 +9,15 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": -1,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Form1.cs [Dise\u00F1o]",
-              "DocumentMoniker": "D:\\Aldana\\Escritorio\\PROG III\\tp-winform-equipo-12c\\TPWinForm_equipo-12c\\WindowsFormsApp\\Form1.cs",
-              "RelativeDocumentMoniker": "WindowsFormsApp\\Form1.cs",
-              "ToolTip": "D:\\Aldana\\Escritorio\\PROG III\\tp-winform-equipo-12c\\TPWinForm_equipo-12c\\WindowsFormsApp\\Form1.cs [Dise\u00F1o]",
-              "RelativeToolTip": "WindowsFormsApp\\Form1.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-19T14:44:16.968Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             }
           ]
         }
