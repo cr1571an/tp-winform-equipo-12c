@@ -58,8 +58,8 @@ namespace Negocio
                     articulo.Marca = new Marca();
                     articulo.Marca.Descripcion = reader["Marca"].ToString();
 
-                    //articulo.Categoria = new Categoria();
-                    //articulo.Categoria.Descripcion = reader["Categoria"].ToString(); TO DO: descomentar luego de agregar la clase categorias.
+                    articulo.Categoria = new Categoria();
+                    articulo.Categoria.Descripcion = reader["Categoria"].ToString();
                 }
 
                 return articulo;
@@ -73,5 +73,49 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+        public List<Articulo> Listar()
+        {
+            List<Articulo> lista = new List<Articulo>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion as Marca, M.Id as IdMarca, C.Descripcion as Categoria, C.Id as IdCategoria, Precio FROM ARTICULOS A LEFT JOIN MARCAS M ON A.IdMarca = M.Id LEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id");
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Articulo aux = new Articulo();
+
+                    aux.Id = (int)datos.Lector["Id"];
+                    aux.Codigo = (string)datos.Lector["Codigo"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Descripcion = (string)datos.Lector["Descripcion"];
+
+                    aux.Marca = new Marca();
+                    aux.Marca.Id = (int)datos.Lector["IdMarca"];
+                    aux.Marca.Descripcion = (string)datos.Lector["Marca"];
+
+                    aux.Categoria = new Categoria();
+                    if (datos.Lector["IdCategoria"] != DBNull.Value)
+                        aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
+
+                    aux.Precio = Convert.ToDecimal(datos.Lector["Precio"]);
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }
