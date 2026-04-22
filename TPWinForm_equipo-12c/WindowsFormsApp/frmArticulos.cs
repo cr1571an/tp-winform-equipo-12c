@@ -23,5 +23,11 @@ namespace WindowsFormsApp
             ArticuloNegocio negocio = new ArticuloNegocio();
             dataGridView1.DataSource = negocio.Listar();
         }
+
+        private void btnagregar_Click(object sender, EventArgs e)
+        {
+            frmAltaArticulo alta = new frmAltaArticulo();
+            alta.ShowDialog();
+        }
     }
 }
