@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Dominio;
 
 namespace WindowsFormsApp
 {
@@ -21,7 +22,17 @@ namespace WindowsFormsApp
         private void frmArticulos_Load(object sender, EventArgs e)
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
-            dataGridView1.DataSource = negocio.Listar();
+            dataGridArticulos.DataSource = negocio.Listar();
+            dataGridArticulos.Columns["Id"].Visible = false;
+            dataGridArticulos.Columns["Descripcion"].Visible = false;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {   
+            Articulo articuloSeleccionado = (Articulo)dataGridArticulos.CurrentRow.DataBoundItem;
+            ArticuloNegocio articuloNegocio = new ArticuloNegocio();
+            articuloNegocio.verDetalleArticulo(articuloSeleccionado.Id);
+
         }
     }
 }
