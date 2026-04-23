@@ -48,15 +48,17 @@ namespace WindowsFormsApp
                 cboCategoria.ValueMember = "Id";
                 cboCategoria.DisplayMember = "Descripcion";
 
-                if (articulo != null && ver)
+                if (articulo != null)
                 {
                     txtCodigo.Text = articulo.Codigo;
                     txtNombre.Text = articulo.Nombre;
                     txtDescripcion.Text = articulo.Descripcion;
-                    cboMarca.Text = articulo.Marca.Descripcion.ToString();
-                    cboCategoria.Text = articulo.Categoria.Descripcion.ToString();
+                    cboMarca.SelectedValue = articulo.Marca.Id;
+                    cboCategoria.SelectedValue = articulo.Categoria.Id;
                     txtPrecio.Text = articulo.Precio.ToString();
-                    SetModoSoloLectura();
+
+                    if (ver)
+                        SetModoSoloLectura();
                 }
             }
             catch (Exception ex)
@@ -89,7 +91,11 @@ namespace WindowsFormsApp
                     negocio.agregar(articulo);
                     MessageBox.Show("Articulo agregado exitosamente");
                 }
-                
+                else
+                {
+                    negocio.modificar(articulo);
+                    MessageBox.Show("Agregado modificado exitosamente");
+                }
                 Close();
             }
             catch (Exception ex)
