@@ -46,13 +46,11 @@ namespace WindowsFormsApp
         }
         private void cargar()
         {
-            ArticuloNegocio articulo = new ArticuloNegocio();
             try
             {
-                ArticuloNegocio negocio = new ArticuloNegocio();
-                dataGridView1.DataSource = negocio.Listar();
-                dataGridView1.Columns["Id"].Visible = false;
-                dataGridView1.Columns["Descripcion"].Visible = false;
+                ArticuloNegocio articulo = new ArticuloNegocio();
+                dataGridView1.DataSource = articulo.Listar();
+                ocultarColumnas();
             }
             catch (Exception ex)
             {
@@ -60,5 +58,10 @@ namespace WindowsFormsApp
             }
         }
 
+        private void ocultarColumnas()
+        {
+            dataGridView1.Columns["Id"].Visible = false;
+            dataGridView1.Columns["Descripcion"].Visible = false;
+        }
     }
 }
