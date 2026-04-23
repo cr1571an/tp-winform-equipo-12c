@@ -22,17 +22,21 @@ namespace WindowsFormsApp
         private void frmArticulos_Load(object sender, EventArgs e)
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
-            dataGridArticulos.DataSource = negocio.Listar();
-            dataGridArticulos.Columns["Id"].Visible = false;
-            dataGridArticulos.Columns["Descripcion"].Visible = false;
+            dataGridView1.DataSource = negocio.Listar();
+            dataGridView1.Columns["Id"].Visible = false;
+            dataGridView1.Columns["Descripcion"].Visible = false;
+        }
+        private void btnagregar_Click(object sender, EventArgs e)
+        {
+            frmAltaArticulo alta = new frmAltaArticulo();
+            alta.ShowDialog();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {   
-            Articulo articuloSeleccionado = (Articulo)dataGridArticulos.CurrentRow.DataBoundItem;
-            ArticuloNegocio articuloNegocio = new ArticuloNegocio();
-            articuloNegocio.verDetalleArticulo(articuloSeleccionado.Id);
-
+        private void btnVer_Click(object sender, EventArgs e)
+        {
+            Articulo articuloSeleccionado = (Articulo)dataGridView1.CurrentRow.DataBoundItem;
+            frmAltaArticulo modificar = new frmAltaArticulo(articuloSeleccionado, true);
+            modificar.ShowDialog();
         }
     }
 }

@@ -1,7 +1,7 @@
 <Solution>
   <Folder Name="/Solution Items/">
-    <File Path="../.gitignore" />
-    <File Path="../README.md" />
+    <File Path=".gitignore" />
+    <File Path="README.md" />
   </Folder>
   <Project Path="Dominio/Dominio.csproj" Id="0e4f035d-e2d3-43bc-8cb1-e7ddb458119a" />
   <Project Path="Negocio/Negocio.csproj" Id="d90886f0-df5d-4505-956e-1d5aeab452c6" />
