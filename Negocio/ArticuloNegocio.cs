@@ -31,7 +31,7 @@ namespace Negocio
             }
         }
 
-        public Articulo verDetalleArticulo(string id)
+        public Articulo verDetalleArticulo(int id)
         {
             AccesoDatos datos = new AccesoDatos();
 
