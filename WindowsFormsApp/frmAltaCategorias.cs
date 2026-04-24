@@ -54,7 +54,7 @@ namespace WindowsFormsApp
                         MessageBox.Show("Categoria agregada.");
                     }
                     else
-                        MessageBox.Show("La Categoria ya existe, es posible agregarla.");
+                        MessageBox.Show("La Categoria ya existe, no es posible agregarla.");
                     
                 }
                 else
