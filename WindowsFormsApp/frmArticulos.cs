@@ -169,5 +169,21 @@ namespace WindowsFormsApp
 
             return false;
         }
+
+        private void marcasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmMarcas marcasVentana = new frmMarcas();
+            marcasVentana.ShowDialog();
+        }
+
+        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
