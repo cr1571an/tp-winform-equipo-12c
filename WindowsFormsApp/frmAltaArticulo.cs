@@ -44,7 +44,7 @@ namespace WindowsFormsApp
                 cboMarca.ValueMember = "Id";
                 cboMarca.DisplayMember = "Descripcion";
 
-                cboCategoria.DataSource = categoriaNegocio.Listar();
+                cboCategoria.DataSource = categoriaNegocio.listar();
                 cboCategoria.ValueMember = "Id";
                 cboCategoria.DisplayMember = "Descripcion";
 
