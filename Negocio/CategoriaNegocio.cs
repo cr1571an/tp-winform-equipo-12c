@@ -9,7 +9,7 @@ namespace Negocio
 {
     public class CategoriaNegocio
     {
-        public List<Categoria> Listar()
+        public List<Categoria> listar()
         {
             List<Categoria> lista = new List<Categoria>();
             AccesoDatos datos = new AccesoDatos();
@@ -60,7 +60,7 @@ namespace Negocio
             }
         }
 
-        public void Modificar(Categoria categoria)
+        public void modificar(Categoria categoria)
         {
             AccesoDatos datos = new AccesoDatos();
             try
@@ -90,6 +90,27 @@ namespace Negocio
                 datos.setearParametro("@id", id);
 
                 datos.ejecutarAccion();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public bool existe(string descripcion) 
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("SELECT [Id] ,[Descripcion] FROM [CATALOGO_P3_DB].[dbo].[CATEGORIAS] where Descripcion = @descripcion");
+                datos.setearParametro("@descripcion", descripcion);
+
+                datos.ejecutarLectura();
+                return datos.Lector.Read();
             }
             catch (Exception)
             {
