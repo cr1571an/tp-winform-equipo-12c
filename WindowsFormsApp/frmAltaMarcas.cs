@@ -48,8 +48,14 @@ namespace WindowsFormsApp
                 marca.Descripcion = txtMarca.Text;
                 if (marca.Id == 0)
                 {
-                    negocio.agregar(marca);
-                    MessageBox.Show("Marca agregada.");
+                    if (!negocio.existe(marca.Descripcion))
+                    {
+                        negocio.agregar(marca);
+                        MessageBox.Show("Marca agregada.");
+                    }
+                    else
+                        MessageBox.Show("La Marca ya existe, no es posible agregarla.");
+                    
                 }
                 else
                 {

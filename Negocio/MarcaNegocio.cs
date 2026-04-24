@@ -103,5 +103,26 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
+        public bool existe(string descripcion)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("SELECT [Id] ,[Descripcion] FROM [CATALOGO_P3_DB].[dbo].[MARCAS] where Descripcion = @descripcion");
+                datos.setearParametro("@descripcion", descripcion);
+
+                datos.ejecutarLectura();
+                return datos.Lector.Read();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }
