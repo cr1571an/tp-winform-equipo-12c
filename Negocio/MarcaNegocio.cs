@@ -41,17 +41,19 @@ namespace Negocio
         }
         public void agregar(Marca marca)
         {
+            if (string.IsNullOrWhiteSpace(marca.Descripcion))
+                throw new Exception("No escribiste ninguna marca.");
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("Insert into MARCAS (Descripcion) values (@descripcion);");
+                datos.setearConsulta("INSERT INTO MARCAS (Descripcion) VALUES (@descripcion);");
                 datos.setearParametro("@descripcion", marca.Descripcion);
 
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Error al agregar la marca: " + ex.Message);
             }
             finally
             {
@@ -61,6 +63,8 @@ namespace Negocio
 
         public void modificar(Marca marca)
         {
+            if (string.IsNullOrWhiteSpace(marca.Descripcion))
+                throw new Exception("No escribiste ninguna marca.");
             AccesoDatos datos = new AccesoDatos();
             try
             {
