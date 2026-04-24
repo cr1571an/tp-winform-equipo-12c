@@ -185,11 +185,5 @@ namespace WindowsFormsApp
         {
             this.Close();
         }
-
-        private void categoriasToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmCategorias categoriaVentana = new frmCategorias();
-            categoriaVentana.ShowDialog();
-        }
     }
 }
