@@ -75,10 +75,12 @@ namespace WindowsFormsApp
             if (dgvMarcas.CurrentRow != null)
             {
                 Marca seleccionado = (Marca)dgvMarcas.CurrentRow.DataBoundItem;
+                string mensaje = $"También se eliminarán los artículos asociados a la marca." + Environment.NewLine + Environment.NewLine+ $"¿Seguro que querés eliminar la marca '{seleccionado.Descripcion}'?";
 
-                MarcaNegocio marca = new MarcaNegocio();
-                marca.eliminar(seleccionado.Id);
-                cargar();
+                    MarcaNegocio marca = new MarcaNegocio();
+                    marca.eliminar(seleccionado.Id);
+                    cargar();
+                }
             }
             else
             {
