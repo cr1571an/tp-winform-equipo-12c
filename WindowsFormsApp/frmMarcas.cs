@@ -77,6 +77,9 @@ namespace WindowsFormsApp
                 Marca seleccionado = (Marca)dgvMarcas.CurrentRow.DataBoundItem;
                 string mensaje = $"También se eliminarán los artículos asociados a la marca." + Environment.NewLine + Environment.NewLine+ $"¿Seguro que querés eliminar la marca '{seleccionado.Descripcion}'?";
 
+                frmConfirmarEliminacion mens = new frmConfirmarEliminacion(mensaje);
+                if (mens.ShowDialog() == DialogResult.OK)
+                {
                     MarcaNegocio marca = new MarcaNegocio();
                     marca.eliminar(seleccionado.Id);
                     cargar();
