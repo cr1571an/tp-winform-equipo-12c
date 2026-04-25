@@ -38,9 +38,16 @@ namespace WindowsFormsApp
         }
         private void btnVer_Click(object sender, EventArgs e)
         {
-            Articulo articuloSeleccionado = (Articulo)dataGridView1.CurrentRow.DataBoundItem;
-            frmAltaArticulo modificar = new frmAltaArticulo(articuloSeleccionado, true);
-            modificar.ShowDialog();
+            if (dataGridView1.CurrentRow == null)
+                return;
+
+            Articulo seleccionado = (Articulo)dataGridView1.CurrentRow.DataBoundItem;
+
+            MessageBox.Show(
+                seleccionado.Descripcion,
+                "Detalle del artículo",
+                MessageBoxButtons.OK
+            );
         }
         private void btnModificar_Click(object sender, EventArgs e)
         {

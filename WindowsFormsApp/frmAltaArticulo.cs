@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Dominio;
 using Negocio;
+using System.IO;
+using System.Configuration;
 
 namespace WindowsFormsApp
 {
@@ -16,6 +18,8 @@ namespace WindowsFormsApp
     {
         private Articulo articulo = null;
         private bool ver = false;
+        private OpenFileDialog archivo = null;
+        private List<Imagen> imagenesArticulo = new List<Imagen>();
         public frmAltaArticulo()
         {
             InitializeComponent();
@@ -57,6 +61,19 @@ namespace WindowsFormsApp
                     cboCategoria.SelectedValue = articulo.Categoria.Id;
                     txtPrecio.Text = articulo.Precio.ToString();
 
+                    if (articulo.Imagenes != null)
+                    {
+                        imagenesArticulo = articulo.Imagenes;
+
+                        foreach (Imagen img in imagenesArticulo)
+                        {
+                            lstImagenes.Items.Add(img.ImagenUrl);
+                        }
+
+                        if (imagenesArticulo.Count > 0)
+                            cargarImagen(imagenesArticulo[0].ImagenUrl);
+                    }
+
                     if (ver)
                         SetModoSoloLectura();
                 }
@@ -70,8 +87,11 @@ namespace WindowsFormsApp
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             if (ver)
+            {
                 Close();
-            
+                return;
+            }
+
             ArticuloNegocio negocio = new ArticuloNegocio();
 
             try
@@ -85,6 +105,7 @@ namespace WindowsFormsApp
                 articulo.Marca = (Marca)cboMarca.SelectedItem;
                 articulo.Categoria = (Categoria)cboCategoria.SelectedItem;
                 articulo.Precio = decimal.Parse(txtPrecio.Text);
+                articulo.Imagenes = imagenesArticulo;
 
                 if (articulo.Id == 0)
                 {
@@ -94,7 +115,7 @@ namespace WindowsFormsApp
                 else
                 {
                     negocio.modificar(articulo);
-                    MessageBox.Show("Agregado modificado exitosamente");
+                    MessageBox.Show("Articulo modificado exitosamente");
                 }
                 Close();
             }
@@ -118,6 +139,61 @@ namespace WindowsFormsApp
             cboCategoria.Enabled = false;
             txtPrecio.Enabled = false;
             btnCancelar.Visible = false;
+            txtUrlImagen.Enabled = false;
+            btnBuscarImagen.Enabled = false;
+            btnAgregarImagen.Enabled = false;
+            lstImagenes.Enabled = false;
+        }
+        private void cargarImagen(string imagen)
+        {
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(imagen))
+                    pbxAltaArticulo.Load(imagen);
+                else
+                    pbxAltaArticulo.Load("https://efectocolibri.com/wp-content/uploads/2021/01/placeholder.png");
+            }
+            catch
+            {
+                pbxAltaArticulo.Load("https://efectocolibri.com/wp-content/uploads/2021/01/placeholder.png");
+            }
+        }
+        private void txtUrlImagen_Leave(object sender, EventArgs e)
+        {
+            cargarImagen(txtUrlImagen.Text);
+        }
+        private void btnBuscarImagen_Click(object sender, EventArgs e)
+        {
+            archivo = new OpenFileDialog();
+            archivo.Filter = "Imágenes (*.jpg;*.png)|*.jpg;*.png";
+
+            if (archivo.ShowDialog() == DialogResult.OK)
+            {
+                txtUrlImagen.Text = archivo.FileName;
+                cargarImagen(archivo.FileName);
+            }
+        }
+        private void btnAgregarImagen_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtUrlImagen.Text))
+            {
+                MessageBox.Show("Ingresá o seleccioná una imagen.");
+                return;
+            }
+
+            Imagen imagen = new Imagen();
+            imagen.ImagenUrl = txtUrlImagen.Text;
+
+            imagenesArticulo.Add(imagen);
+            lstImagenes.Items.Add(txtUrlImagen.Text);
+
+            cargarImagen(txtUrlImagen.Text);
+            txtUrlImagen.Clear();
+        }
+        private void lstImagenes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lstImagenes.SelectedItem != null)
+                cargarImagen(lstImagenes.SelectedItem.ToString());
         }
     }
 }

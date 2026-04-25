@@ -30,48 +30,6 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-        public Articulo verDetalleArticulo(int id)
-        {
-            AccesoDatos datos = new AccesoDatos();
-
-            try
-            {
-                datos.setearConsulta("SELECT A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion AS Marca, M.Id AS IdMarca, C.Descripcion AS Categoria, C.Id AS IdCategoria, Precio FROM ARTICULOS A, MARCAS M, CATEGORIAS C WHERE A.IdMarca = M.Id AND A.IdCategoria = C.Id;");
-                datos.setearParametro("@id", id);
-                datos.ejecutarLectura();
-
-                SqlDataReader reader = datos.Lector;
-
-                Articulo articulo = new Articulo();
-
-                if (reader.Read())
-                {
-                    articulo.Codigo = reader["Codigo"].ToString();
-                    articulo.Nombre = reader["Nombre"].ToString();
-                    articulo.Descripcion = reader["Descripcion"].ToString();
-
-                    articulo.Precio = reader["Precio"] != DBNull.Value
-                        ? (decimal)reader["Precio"]
-                        : 0;
-
-                    articulo.Marca = new Marca();
-                    articulo.Marca.Descripcion = reader["Marca"].ToString();
-
-                    articulo.Categoria = new Categoria();
-                    articulo.Categoria.Descripcion = reader["Categoria"].ToString();
-                }
-
-                return articulo;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexion();
-            }
-        }
         public List<Articulo> Listar()
         {
             List<Articulo> lista = new List<Articulo>();
@@ -332,7 +290,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("Insert into ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio) values (@codigo, @nombre, @descripcion, @idMarca, @idCategoria, @precio)");
+                datos.setearConsulta("INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio) OUTPUT INSERTED.Id VALUES (@codigo, @nombre, @descripcion, @idMarca, @idCategoria, @precio)");
 
                 datos.setearParametro("@codigo", nuevo.Codigo);
                 datos.setearParametro("@nombre", nuevo.Nombre);
@@ -341,7 +299,17 @@ namespace Negocio
                 datos.setearParametro("@idCategoria", nuevo.Categoria.Id);
                 datos.setearParametro("@precio", nuevo.Precio);
 
-                datos.ejecutarAccion();
+                int idArticuloNuevo = (int)datos.ejecutarScalar();
+
+                ImagenNegocio imagenNegocio = new ImagenNegocio();
+
+                if (nuevo.Imagenes != null)
+                {
+                    foreach (Imagen img in nuevo.Imagenes)
+                    {
+                        imagenNegocio.agregar(idArticuloNuevo, img.ImagenUrl);
+                    }
+                }
             }
             catch (Exception ex)
             {

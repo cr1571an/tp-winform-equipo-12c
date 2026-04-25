@@ -113,7 +113,7 @@
             this.btnVer.Name = "btnVer";
             this.btnVer.Size = new System.Drawing.Size(113, 43);
             this.btnVer.TabIndex = 4;
-            this.btnVer.Text = "Ver";
+            this.btnVer.Text = "Detalle";
             this.btnVer.UseVisualStyleBackColor = true;
             this.btnVer.Click += new System.EventHandler(this.btnVer_Click);
             // 
