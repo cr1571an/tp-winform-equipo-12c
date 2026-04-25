@@ -15,6 +15,8 @@ namespace WindowsFormsApp
     public partial class frmArticulos : Form
     {
         private List<Articulo> listaArticulo;
+        private int indiceImagen = 0;
+        private Articulo articuloSeleccionado = null;
         public frmArticulos()
         {
             InitializeComponent();
@@ -36,9 +38,16 @@ namespace WindowsFormsApp
         }
         private void btnVer_Click(object sender, EventArgs e)
         {
-            Articulo articuloSeleccionado = (Articulo)dataGridView1.CurrentRow.DataBoundItem;
-            frmAltaArticulo modificar = new frmAltaArticulo(articuloSeleccionado, true);
-            modificar.ShowDialog();
+            if (dataGridView1.CurrentRow == null)
+                return;
+
+            Articulo seleccionado = (Articulo)dataGridView1.CurrentRow.DataBoundItem;
+
+            MessageBox.Show(
+                seleccionado.Descripcion,
+                "Detalle del artículo",
+                MessageBoxButtons.OK
+            );
         }
         private void btnModificar_Click(object sender, EventArgs e)
         {
@@ -184,6 +193,73 @@ namespace WindowsFormsApp
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridView1.CurrentRow != null)
+            {
+                articuloSeleccionado = (Articulo)dataGridView1.CurrentRow.DataBoundItem;
+                indiceImagen = 0;
+
+                if (articuloSeleccionado.Imagenes != null && articuloSeleccionado.Imagenes.Count > 0)
+                    cargarImagen(articuloSeleccionado.Imagenes[indiceImagen].ImagenUrl);
+                else
+                    cargarImagen("");
+
+                actualizarContadorImagen();
+            }
+        }
+        private void cargarImagen(string imagen)
+        {
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(imagen))
+                    pbxArticulo.Load(imagen);
+                else
+                    pbxArticulo.Load("https://efectocolibri.com/wp-content/uploads/2021/01/placeholder.png");
+            }
+            catch
+            {
+                pbxArticulo.Load("https://efectocolibri.com/wp-content/uploads/2021/01/placeholder.png");
+            }
+        }
+
+        private void btnSiguienteImagen_Click(object sender, EventArgs e)
+        {
+            if (articuloSeleccionado == null || articuloSeleccionado.Imagenes == null || articuloSeleccionado.Imagenes.Count == 0)
+                return;
+
+            indiceImagen++;
+
+            if (indiceImagen >= articuloSeleccionado.Imagenes.Count)
+                indiceImagen = 0;
+
+            cargarImagen(articuloSeleccionado.Imagenes[indiceImagen].ImagenUrl);
+            actualizarContadorImagen();
+        }
+        private void btnAnteriorImagen_Click(object sender, EventArgs e)
+        {
+            if (articuloSeleccionado == null || articuloSeleccionado.Imagenes == null || articuloSeleccionado.Imagenes.Count == 0)
+                return;
+
+            indiceImagen--;
+
+            if (indiceImagen < 0)
+                indiceImagen = articuloSeleccionado.Imagenes.Count - 1;
+
+            cargarImagen(articuloSeleccionado.Imagenes[indiceImagen].ImagenUrl);
+            actualizarContadorImagen();
+        }
+        private void actualizarContadorImagen()
+        {
+            if (articuloSeleccionado == null || articuloSeleccionado.Imagenes == null || articuloSeleccionado.Imagenes.Count == 0)
+            {
+                lblImagenActual.Text = "0 / 0";
+            }
+            else
+            {
+                lblImagenActual.Text = (indiceImagen + 1) + " / " + articuloSeleccionado.Imagenes.Count;
+            }
         }
     }
 }
