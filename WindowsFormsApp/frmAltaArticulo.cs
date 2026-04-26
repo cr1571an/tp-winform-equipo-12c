@@ -91,17 +91,20 @@ namespace WindowsFormsApp
                 return;
             }
 
-            ArticuloNegocio negocio = new ArticuloNegocio();
-            if (!ValidadorUI.ValidarMaxCaracteres(txtCodigo, 50, "Máximo 50 caracteres", errorProvider1)) return;
-            if (!ValidadorUI.ValidarMaxCaracteres(txtNombre, 50, "Máximo 50 caracteres", errorProvider2)) return;
-            if (!decimal.TryParse(txtPrecio.Text, out decimal precio)){
-                errorProvider1.SetError(txtPrecio, "El precio debe ser numérico.");
-                txtPrecio.Focus();
-                return;
-            }
-            else{ errorProvider1.SetError(txtPrecio, "");}
-            if (!ValidadorUI.ValidarMaxCaracteres(txtDescripcion, 150, "Máximo 150 caracteres", errorProvider4)) return;
+            bool valido = true;
 
+            errorProvider1.Clear();
+
+            valido &= ValidadorUI.ValidarTexto(txtCodigo, 50, "Máximo 50 caracteres", errorProvider1);
+            valido &= ValidadorUI.ValidarTexto(txtNombre, 50, "Máximo 50 caracteres", errorProvider1);
+            valido &= ValidadorUI.ValidarTexto(txtDescripcion, 150, "Máximo 150 caracteres", errorProvider1);
+            valido &= ValidadorUI.ValidarDecimal(txtPrecio, "El precio debe ser numérico", errorProvider1);
+
+
+            if (!valido)
+                return;
+            
+            ArticuloNegocio negocio = new ArticuloNegocio();
             try
             {   
                 if (articulo == null)
@@ -226,6 +229,26 @@ namespace WindowsFormsApp
         {
             if (lstImagenes.SelectedItem != null)
                 cargarImagen(lstImagenes.SelectedItem.ToString());
+        }
+
+        private void txtCodigo_TextChanged(object sender, EventArgs e)
+        {
+            ValidadorUI.ValidarTexto(txtCodigo, 50, "Máximo 50 caracteres", errorProvider1);
+        }
+
+        private void txtNombre_TextChanged(object sender, EventArgs e)
+        {
+            ValidadorUI.ValidarTexto(txtNombre, 50, "Máximo 50 caracteres", errorProvider1);
+        }
+
+        private void txtPrecio_TextChanged(object sender, EventArgs e)
+        {
+            ValidadorUI.ValidarDecimal(txtPrecio, "El precio debe ser numérico", errorProvider1);
+        }
+
+        private void txtDescripcion_TextChanged(object sender, EventArgs e)
+        {
+            ValidadorUI.ValidarTexto(txtDescripcion, 150, "Máximo 150 caracteres", errorProvider1);
         }
     }
 }
