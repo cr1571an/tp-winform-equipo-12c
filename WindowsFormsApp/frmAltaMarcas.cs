@@ -44,6 +44,8 @@ namespace WindowsFormsApp
             MarcaNegocio negocio = new MarcaNegocio();
             try
             {
+                if (!ValidadorUI.ValidarMaxCaracteres(txtMarca, 50, "Máximo 50 caracteres", errorProvider1)) return;
+                
                 if (marca == null) marca = new Marca();
                 marca.Descripcion = txtMarca.Text;
                 if (marca.Id == 0)
