@@ -294,5 +294,11 @@ namespace WindowsFormsApp
             frmCategorias categoriasVentana = new frmCategorias();
             categoriasVentana.ShowDialog();
         }
+
+        private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAcercaDe acercaDeVentana = new frmAcercaDe();
+            acercaDeVentana.ShowDialog();
+        }
     }
 }
