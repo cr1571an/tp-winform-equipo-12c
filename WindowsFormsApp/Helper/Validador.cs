@@ -13,6 +13,13 @@ namespace WindowsFormsApp.Helpers
         public static bool ValidarMaxCaracteres(TextBox txt, int max, string mensaje, ErrorProvider ep)
         {
             if (txt == null || ep == null) return false;
+            if (string.IsNullOrWhiteSpace(txt.Text))
+            {
+                ep.SetError(txt, "Este campo es obligatorio");
+                txt.BackColor = Color.LightCoral;
+                txt.Focus();
+                return false;
+            }
             if (txt.Text.Length > max)
             {
                 ep.SetError(txt, mensaje);
