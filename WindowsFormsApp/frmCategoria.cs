@@ -75,19 +75,19 @@ namespace WindowsFormsApp
             if (dgvCategorias.CurrentRow != null)
             {
                 Categoria seleccionado = (Categoria)dgvCategorias.CurrentRow.DataBoundItem;
-                string mensaje = $"También se eliminarán el dato en los artículos asociados." + Environment.NewLine + Environment.NewLine + $"¿Seguro que querés eliminar la categoria '{seleccionado.Descripcion}'?";
+                string mensaje = $"También se eliminarán los artículos asociados." + Environment.NewLine + Environment.NewLine + $"¿Seguro que querés eliminar la categoria '{seleccionado.Descripcion}'?";
 
                 frmConfirmarEliminacion mens = new frmConfirmarEliminacion(mensaje);
                 if (mens.ShowDialog() == DialogResult.OK)
                 {
-                    CategoriaNegocio marca = new CategoriaNegocio();
-                    marca.eliminar(seleccionado.Id);
+                    CategoriaNegocio categoria = new CategoriaNegocio();
+                    categoria.eliminar(seleccionado.Id);
                     cargar();
                 }
             }
             else
             {
-                MessageBox.Show("Seleccioná la marca a eliaminar.");
+                MessageBox.Show("Seleccioná la categoria a eliaminar.");
             }
         }
         private void btnBuscar_Click_1(object sender, EventArgs e)

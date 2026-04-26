@@ -183,6 +183,7 @@ namespace WindowsFormsApp
         {
             frmMarcas marcasVentana = new frmMarcas();
             marcasVentana.ShowDialog();
+            cargar();
         }
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
@@ -293,6 +294,7 @@ namespace WindowsFormsApp
         {
             frmCategorias categoriasVentana = new frmCategorias();
             categoriasVentana.ShowDialog();
+            cargar();
         }
 
         private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)

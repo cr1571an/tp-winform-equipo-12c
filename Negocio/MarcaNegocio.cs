@@ -96,8 +96,16 @@ namespace Negocio
         public void eliminar(int id)
         {
             AccesoDatos datos = new AccesoDatos();
+            ArticuloNegocio articuloNegocio = new ArticuloNegocio();
             try
             {
+                List<Articulo> articulos = articuloNegocio.Listar().Where(a => a.Marca.Id == id).ToList();
+
+                foreach (var articulo in articulos)
+                {
+                    articuloNegocio.eliminar(articulo.Id);
+                }
+
                 datos.setearConsulta("DELETE FROM MARCAS WHERE Id = @id;");
                 datos.setearParametro("@id", id);
 
