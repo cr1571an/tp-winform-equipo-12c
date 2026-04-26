@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dominio;
+using Negocio.Datos;
 
 namespace Negocio
 {
@@ -44,8 +45,12 @@ namespace Negocio
             if (string.IsNullOrWhiteSpace(marca.Descripcion))
                 throw new Exception("No escribiste ninguna marca.");
             AccesoDatos datos = new AccesoDatos();
+            ValidadorBD validador = new ValidadorBD();
             try
             {
+                if (validador.registroExiste("MARCAS", "Descripcion", marca.Descripcion))
+                    throw new Exception("Ya existe.");
+
                 datos.setearConsulta("INSERT INTO MARCAS (Descripcion) VALUES (@descripcion);");
                 datos.setearParametro("@descripcion", marca.Descripcion);
 
@@ -53,7 +58,7 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al agregar la marca: " + ex.Message);
+                throw ex;
             }
             finally
             {
@@ -66,8 +71,12 @@ namespace Negocio
             if (string.IsNullOrWhiteSpace(marca.Descripcion))
                 throw new Exception("No escribiste ninguna marca.");
             AccesoDatos datos = new AccesoDatos();
+            ValidadorBD validador = new ValidadorBD(); 
             try
             {
+                if (validador.registroExiste("MARCAS", "Descripcion", marca.Descripcion))
+                    throw new Exception("Ya existe.");
+
                 datos.setearConsulta("UPDATE MARCAS SET Descripcion = @descripcion WHERE Id = @id;");
                 datos.setearParametro("@id", marca.Id);
                 datos.setearParametro("@descripcion", marca.Descripcion);

@@ -28,26 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblMensaje = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.txtMarca = new System.Windows.Forms.TextBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblMensaje
             // 
-            this.lblMensaje.AutoSize = true;
-            this.lblMensaje.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMensaje.Location = new System.Drawing.Point(87, 31);
+            this.lblMensaje.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblMensaje.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMensaje.Location = new System.Drawing.Point(0, 0);
             this.lblMensaje.Name = "lblMensaje";
-            this.lblMensaje.Size = new System.Drawing.Size(177, 25);
+            this.lblMensaje.Size = new System.Drawing.Size(369, 70);
             this.lblMensaje.TabIndex = 7;
-            this.lblMensaje.Text = "                                 ";
-            this.lblMensaje.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblMensaje.Text = "Mensaje                  ";
+            this.lblMensaje.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(185, 118);
+            this.btnCancelar.Location = new System.Drawing.Point(195, 110);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(117, 37);
             this.btnCancelar.TabIndex = 6;
@@ -57,7 +60,7 @@
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(46, 118);
+            this.btnAceptar.Location = new System.Drawing.Point(56, 110);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(117, 37);
             this.btnAceptar.TabIndex = 5;
@@ -67,24 +70,30 @@
             // 
             // txtMarca
             // 
-            this.txtMarca.Location = new System.Drawing.Point(92, 73);
+            this.txtMarca.Location = new System.Drawing.Point(102, 65);
+            this.txtMarca.MaxLength = 51;
             this.txtMarca.Name = "txtMarca";
             this.txtMarca.Size = new System.Drawing.Size(171, 22);
             this.txtMarca.TabIndex = 4;
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // frmAltaMarcas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(369, 222);
+            this.ClientSize = new System.Drawing.Size(369, 201);
             this.Controls.Add(this.lblMensaje);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.txtMarca);
             this.Name = "frmAltaMarcas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "frmAltaMarcas";
+            this.Text = "Marca";
             this.Load += new System.EventHandler(this.frmAltaMarcas_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -96,5 +105,6 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.TextBox txtMarca;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

@@ -15,9 +15,14 @@ namespace Negocio
         public void eliminar(int id)
         {
             AccesoDatos datos = new AccesoDatos();
+
             try
-            {                
-                datos.setearConsulta("delete from ARTICULOS where id = @id");
+            {
+                ImagenNegocio imagenNegocio = new ImagenNegocio();
+
+                imagenNegocio.eliminarPorArticulo(id);
+
+                datos.setearConsulta("DELETE FROM ARTICULOS WHERE Id = @id");
                 datos.setearParametro("@id", id);
                 datos.ejecutarAccion();
             }
@@ -30,56 +35,15 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-        public Articulo verDetalleArticulo(int id)
-        {
-            AccesoDatos datos = new AccesoDatos();
-
-            try
-            {
-                datos.setearConsulta("SELECT a.Codigo,a.Nombre,a.Precio, a.Descripcion, c.Descripcion as Categoria,m.Descripcion as Marca FROM [CATALOGO_P3_DB].[dbo].[ARTICULOS] a join CATEGORIAS c on c.Id = a.IdCategoria  join MARCAS m on m.Id = a.IdMarca  where a.id = @id");
-                datos.setearParametro("@id", id);
-                datos.ejecutarLectura();
-
-                SqlDataReader reader = datos.Lector;
-
-                Articulo articulo = new Articulo();
-
-                if (reader.Read())
-                {
-                    articulo.Codigo = reader["Codigo"].ToString();
-                    articulo.Nombre = reader["Nombre"].ToString();
-                    articulo.Descripcion = reader["Descripcion"].ToString();
-
-                    articulo.Precio = reader["Precio"] != DBNull.Value
-                        ? (decimal)reader["Precio"]
-                        : 0;
-
-                    articulo.Marca = new Marca();
-                    articulo.Marca.Descripcion = reader["Marca"].ToString();
-
-                    articulo.Categoria = new Categoria();
-                    articulo.Categoria.Descripcion = reader["Categoria"].ToString();
-                }
-
-                return articulo;
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-            finally
-            {
-                datos.cerrarConexion();
-            }
-        }
         public List<Articulo> Listar()
         {
             List<Articulo> lista = new List<Articulo>();
             AccesoDatos datos = new AccesoDatos();
+            ImagenNegocio imagenNegocio = new ImagenNegocio();
 
             try
             {
-                datos.setearConsulta("SELECT A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion AS Marca, M.Id AS IdMarca, C.Descripcion AS Categoria, C.Id AS IdCategoria, Precio FROM ARTICULOS A, MARCAS M, CATEGORIAS C WHERE A.IdMarca = M.Id AND A.IdCategoria = C.Id;");
+                datos.setearConsulta("SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Descripcion AS Marca, M.Id AS IdMarca, C.Descripcion AS Categoria, C.Id AS IdCategoria, A.Precio FROM ARTICULOS A LEFT JOIN MARCAS M ON A.IdMarca = M.Id LEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id;");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -92,20 +56,45 @@ namespace Negocio
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
 
                     aux.Marca = new Marca();
+
                     if (!(datos.Lector["IdMarca"] is DBNull))
                     {
                         aux.Marca.Id = (int)datos.Lector["IdMarca"];
-                        aux.Marca.Descripcion = (string)datos.Lector["Marca"];
+
+                        if (!(datos.Lector["Marca"] is DBNull))
+                            aux.Marca.Descripcion = (string)datos.Lector["Marca"];
+                        else
+                            aux.Marca.Descripcion = "Sin marca";
+                    }
+                    else
+                    {
+                        aux.Marca.Id = 0;
+                        aux.Marca.Descripcion = "Sin marca";
                     }
 
                     aux.Categoria = new Categoria();
-                    if (!(datos.Lector["IdCategoria"] is DBNull)) 
-                    { 
+
+                    if (!(datos.Lector["IdCategoria"] is DBNull))
+                    {
                         aux.Categoria.Id = (int)datos.Lector["IdCategoria"];
-                        aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
+
+                        if (!(datos.Lector["Categoria"] is DBNull))
+                            aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
+                        else
+                            aux.Categoria.Descripcion = "Sin categoría";
+                    }
+                    else
+                    {
+                        aux.Categoria.Id = 0;
+                        aux.Categoria.Descripcion = "Sin categoría";
                     }
 
-                    aux.Precio = Convert.ToDecimal(datos.Lector["Precio"]);
+                    if (!(datos.Lector["Precio"] is DBNull))
+                        aux.Precio = Convert.ToDecimal(datos.Lector["Precio"]);
+                    else
+                        aux.Precio = 0;
+
+                    aux.Imagenes = imagenNegocio.listarPorArticulo(aux.Id);
 
                     lista.Add(aux);
                 }
@@ -125,23 +114,24 @@ namespace Negocio
         {
             List<Articulo> lista = new List<Articulo>();
             AccesoDatos datos = new AccesoDatos();
+            ImagenNegocio imagenNegocio = new ImagenNegocio();
 
             try
             {
-                string consulta = "SELECT A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion AS Marca, M.Id AS IdMarca, C.Descripcion AS Categoria, C.Id AS IdCategoria, Precio FROM ARTICULOS A, MARCAS M, CATEGORIAS C WHERE A.IdMarca = M.Id AND A.IdCategoria = C.Id AND ";
+                string consulta = "SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Descripcion AS Marca, M.Id AS IdMarca, C.Descripcion AS Categoria, C.Id AS IdCategoria, A.Precio FROM ARTICULOS A LEFT JOIN MARCAS M ON A.IdMarca = M.Id LEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id WHERE ";
 
                 if (campo == "Precio")
                 {
                     switch (criterio)
                     {
                         case "Mayor a":
-                            consulta += "Precio > " + filtro;
+                            consulta += "A.Precio > " + filtro;
                             break;
                         case "Menor a":
-                            consulta += "Precio < " + filtro;
+                            consulta += "A.Precio < " + filtro;
                             break;
                         default:
-                            consulta += "Precio = " + filtro;
+                            consulta += "A.Precio = " + filtro;
                             break;
                     }
                 }
@@ -150,13 +140,13 @@ namespace Negocio
                     switch (criterio)
                     {
                         case "Comienza con":
-                            consulta += "Codigo LIKE '" + filtro + "%'";
+                            consulta += "A.Codigo LIKE '" + filtro + "%'";
                             break;
                         case "Termina con":
-                            consulta += "Codigo LIKE '%" + filtro + "'";
+                            consulta += "A.Codigo LIKE '%" + filtro + "'";
                             break;
                         default:
-                            consulta += "Codigo LIKE '%" + filtro + "%'";
+                            consulta += "A.Codigo LIKE '%" + filtro + "%'";
                             break;
                     }
                 }
@@ -165,13 +155,13 @@ namespace Negocio
                     switch (criterio)
                     {
                         case "Comienza con":
-                            consulta += "Nombre LIKE '" + filtro + "%'";
+                            consulta += "A.Nombre LIKE '" + filtro + "%'";
                             break;
                         case "Termina con":
-                            consulta += "Nombre LIKE '%" + filtro + "'";
+                            consulta += "A.Nombre LIKE '%" + filtro + "'";
                             break;
                         default:
-                            consulta += "Nombre LIKE '%" + filtro + "%'";
+                            consulta += "A.Nombre LIKE '%" + filtro + "%'";
                             break;
                     }
                 }
@@ -219,20 +209,45 @@ namespace Negocio
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
 
                     aux.Marca = new Marca();
+
                     if (!(datos.Lector["IdMarca"] is DBNull))
                     {
                         aux.Marca.Id = (int)datos.Lector["IdMarca"];
-                        aux.Marca.Descripcion = (string)datos.Lector["Marca"];
+
+                        if (!(datos.Lector["Marca"] is DBNull))
+                            aux.Marca.Descripcion = (string)datos.Lector["Marca"];
+                        else
+                            aux.Marca.Descripcion = "Sin marca";
+                    }
+                    else
+                    {
+                        aux.Marca.Id = 0;
+                        aux.Marca.Descripcion = "Sin marca";
                     }
 
                     aux.Categoria = new Categoria();
+
                     if (!(datos.Lector["IdCategoria"] is DBNull))
                     {
                         aux.Categoria.Id = (int)datos.Lector["IdCategoria"];
-                        aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
+
+                        if (!(datos.Lector["Categoria"] is DBNull))
+                            aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
+                        else
+                            aux.Categoria.Descripcion = "Sin categoría";
+                    }
+                    else
+                    {
+                        aux.Categoria.Id = 0;
+                        aux.Categoria.Descripcion = "Sin categoría";
                     }
 
-                    aux.Precio = Convert.ToDecimal(datos.Lector["Precio"]);
+                    if (!(datos.Lector["Precio"] is DBNull))
+                        aux.Precio = Convert.ToDecimal(datos.Lector["Precio"]);
+                    else
+                        aux.Precio = 0;
+
+                    aux.Imagenes = imagenNegocio.listarPorArticulo(aux.Id);
 
                     lista.Add(aux);
                 }
@@ -251,6 +266,7 @@ namespace Negocio
         public void modificar(Articulo articulo)
         {
             AccesoDatos datos = new AccesoDatos();
+
             try
             {
                 datos.setearConsulta("UPDATE ARTICULOS SET Codigo = @codigo, Nombre = @nombre, Descripcion = @descripcion, IdMarca = @iDMarca, IdCategoria = @idCategoria, Precio = @precio WHERE Id = @id");
@@ -264,6 +280,18 @@ namespace Negocio
                 datos.setearParametro("@id", articulo.Id);
 
                 datos.ejecutarAccion();
+
+                ImagenNegocio imagenNegocio = new ImagenNegocio();
+
+                imagenNegocio.eliminarPorArticulo(articulo.Id);
+
+                if (articulo.Imagenes != null)
+                {
+                    foreach (Imagen img in articulo.Imagenes)
+                    {
+                        imagenNegocio.agregar(articulo.Id, img.ImagenUrl);
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -280,7 +308,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("Insert into ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio) values (@codigo, @nombre, @descripcion, @idMarca, @idCategoria, @precio)");
+                datos.setearConsulta("INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio) OUTPUT INSERTED.Id VALUES (@codigo, @nombre, @descripcion, @idMarca, @idCategoria, @precio)");
 
                 datos.setearParametro("@codigo", nuevo.Codigo);
                 datos.setearParametro("@nombre", nuevo.Nombre);
@@ -289,7 +317,17 @@ namespace Negocio
                 datos.setearParametro("@idCategoria", nuevo.Categoria.Id);
                 datos.setearParametro("@precio", nuevo.Precio);
 
-                datos.ejecutarAccion();
+                int idArticuloNuevo = (int)datos.ejecutarScalar();
+
+                ImagenNegocio imagenNegocio = new ImagenNegocio();
+
+                if (nuevo.Imagenes != null)
+                {
+                    foreach (Imagen img in nuevo.Imagenes)
+                    {
+                        imagenNegocio.agregar(idArticuloNuevo, img.ImagenUrl);
+                    }
+                }
             }
             catch (Exception ex)
             {

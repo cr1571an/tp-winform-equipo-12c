@@ -100,9 +100,9 @@
             // 
             // btnVolver
             // 
-            this.btnVolver.Location = new System.Drawing.Point(86, 332);
+            this.btnVolver.Location = new System.Drawing.Point(49, 332);
             this.btnVolver.Name = "btnVolver";
-            this.btnVolver.Size = new System.Drawing.Size(70, 23);
+            this.btnVolver.Size = new System.Drawing.Size(153, 23);
             this.btnVolver.TabIndex = 10;
             this.btnVolver.Text = "Volver";
             this.btnVolver.UseVisualStyleBackColor = true;

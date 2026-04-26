@@ -78,12 +78,19 @@
     <Compile Include="frmCategoria.Designer.cs">
       <DependentUpon>frmCategoria.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmConfirmarEliminacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmConfirmarEliminacion.Designer.cs">
+      <DependentUpon>frmConfirmarEliminacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMarcas.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmMarcas.Designer.cs">
       <DependentUpon>frmMarcas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper\Validador.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmAltaArticulo.resx">
@@ -100,6 +107,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmCategoria.resx">
       <DependentUpon>frmCategoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmConfirmarEliminacion.resx">
+      <DependentUpon>frmConfirmarEliminacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMarcas.resx">
       <DependentUpon>frmMarcas.cs</DependentUpon>
