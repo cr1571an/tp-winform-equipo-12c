@@ -38,11 +38,12 @@ namespace WindowsFormsApp
         }
         private void btnVer_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.CurrentRow == null)
+            if (dataGridView1.CurrentRow == null || !(dataGridView1.CurrentRow.DataBoundItem is Articulo))
+            {
+                MessageBox.Show("Seleccioná un artículo para ver el detalle.");
                 return;
-
+            }
             Articulo seleccionado = (Articulo)dataGridView1.CurrentRow.DataBoundItem;
-
             MessageBox.Show(
                 seleccionado.Descripcion,
                 "Detalle del artículo",
@@ -51,10 +52,16 @@ namespace WindowsFormsApp
         }
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            Articulo seleccionado = (Articulo)dataGridView1.CurrentRow.DataBoundItem;
-            frmAltaArticulo modificar = new frmAltaArticulo(seleccionado, false);
-            modificar.ShowDialog();
-            cargar();
+            if (dataGridView1.CurrentRow?.DataBoundItem is Articulo seleccionado)
+            {
+                frmAltaArticulo modificar = new frmAltaArticulo(seleccionado, false);
+                modificar.ShowDialog();
+                cargar();
+            }
+            else
+            {
+                MessageBox.Show("Seleccioná a modificar artículo.");
+            }
         }
         private void cargar()
         {
@@ -264,8 +271,11 @@ namespace WindowsFormsApp
         }
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.CurrentRow == null)
+            if (dataGridView1.CurrentRow == null || dataGridView1.CurrentRow.DataBoundItem == null || !(dataGridView1.CurrentRow.DataBoundItem is Articulo))
+            {
+                MessageBox.Show("Seleccioná el artículo a eliminar.");
                 return;
+            }
 
             Articulo seleccionado = (Articulo)dataGridView1.CurrentRow.DataBoundItem;
 

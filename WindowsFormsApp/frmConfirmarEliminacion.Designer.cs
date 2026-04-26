@@ -71,6 +71,8 @@
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.lblMensaje);
             this.Controls.Add(this.btnAceptar);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "frmConfirmarEliminacion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Confirmar Eliminacion";
