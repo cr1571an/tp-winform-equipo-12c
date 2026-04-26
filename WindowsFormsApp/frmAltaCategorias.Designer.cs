@@ -28,10 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblMensaje = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.txtCategoria = new System.Windows.Forms.TextBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblMensaje
@@ -49,7 +52,7 @@
             // btnCancelar
             // 
             this.btnCancelar.Location = new System.Drawing.Point(139, 96);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(88, 30);
             this.btnCancelar.TabIndex = 6;
@@ -60,7 +63,7 @@
             // btnAceptar
             // 
             this.btnAceptar.Location = new System.Drawing.Point(34, 96);
-            this.btnAceptar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAceptar.Margin = new System.Windows.Forms.Padding(2);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(88, 30);
             this.btnAceptar.TabIndex = 5;
@@ -71,10 +74,15 @@
             // txtCategoria
             // 
             this.txtCategoria.Location = new System.Drawing.Point(69, 59);
-            this.txtCategoria.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtCategoria.Margin = new System.Windows.Forms.Padding(2);
             this.txtCategoria.Name = "txtCategoria";
             this.txtCategoria.Size = new System.Drawing.Size(129, 20);
             this.txtCategoria.TabIndex = 4;
+            this.txtCategoria.TextChanged += new System.EventHandler(this.txtCategoria_TextChanged);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // frmAltaCategorias
             // 
@@ -85,11 +93,12 @@
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.txtCategoria);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmAltaCategorias";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmAltaCategorias";
             this.Load += new System.EventHandler(this.frmAltaCategorias_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -101,5 +110,6 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.TextBox txtCategoria;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

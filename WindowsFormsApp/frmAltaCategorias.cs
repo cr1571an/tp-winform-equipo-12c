@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp.Helpers;
 
 namespace WindowsFormsApp
 {
@@ -45,6 +46,11 @@ namespace WindowsFormsApp
             try
             {
                 if (categoria == null) categoria = new Categoria();
+
+                bool valido = ValidadorUI.ValidarTexto(txtCategoria, 50, "Máximo 50 caracteres", errorProvider1);
+                if (!valido)
+                    return;
+
                 categoria.Descripcion = txtCategoria.Text;
                 if (categoria.Id == 0)
                 {
@@ -74,6 +80,11 @@ namespace WindowsFormsApp
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void txtCategoria_TextChanged(object sender, EventArgs e)
+        {
+            ValidadorUI.ValidarTexto(txtCategoria, 50, "Máximo 50 caracteres", errorProvider1);
         }
     }
 }
