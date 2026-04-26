@@ -53,6 +53,7 @@
             this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider4 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnEliminarImagen = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbxAltaArticulo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
@@ -205,7 +206,7 @@
             // 
             // txtUrlImagen
             // 
-            this.txtUrlImagen.Location = new System.Drawing.Point(116, 341);
+            this.txtUrlImagen.Location = new System.Drawing.Point(117, 339);
             this.txtUrlImagen.MaxLength = 1000;
             this.txtUrlImagen.Name = "txtUrlImagen";
             this.txtUrlImagen.Size = new System.Drawing.Size(173, 22);
@@ -214,7 +215,7 @@
             // 
             // btnBuscarImagen
             // 
-            this.btnBuscarImagen.Location = new System.Drawing.Point(322, 342);
+            this.btnBuscarImagen.Location = new System.Drawing.Point(302, 339);
             this.btnBuscarImagen.Name = "btnBuscarImagen";
             this.btnBuscarImagen.Size = new System.Drawing.Size(43, 23);
             this.btnBuscarImagen.TabIndex = 14;
@@ -234,9 +235,9 @@
             // 
             // btnAgregarImagen
             // 
-            this.btnAgregarImagen.Location = new System.Drawing.Point(429, 341);
+            this.btnAgregarImagen.Location = new System.Drawing.Point(357, 335);
             this.btnAgregarImagen.Name = "btnAgregarImagen";
-            this.btnAgregarImagen.Size = new System.Drawing.Size(173, 30);
+            this.btnAgregarImagen.Size = new System.Drawing.Size(113, 30);
             this.btnAgregarImagen.TabIndex = 16;
             this.btnAgregarImagen.Text = "Agregar imagen";
             this.btnAgregarImagen.UseVisualStyleBackColor = true;
@@ -267,11 +268,22 @@
             // 
             this.errorProvider4.ContainerControl = this;
             // 
+            // btnEliminarImagen
+            // 
+            this.btnEliminarImagen.Location = new System.Drawing.Point(482, 336);
+            this.btnEliminarImagen.Name = "btnEliminarImagen";
+            this.btnEliminarImagen.Size = new System.Drawing.Size(113, 29);
+            this.btnEliminarImagen.TabIndex = 18;
+            this.btnEliminarImagen.Text = "Eliminar imagen";
+            this.btnEliminarImagen.UseVisualStyleBackColor = true;
+            this.btnEliminarImagen.Click += new System.EventHandler(this.btnEliminarImagen_Click);
+            // 
             // frmAltaArticulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(633, 539);
+            this.Controls.Add(this.btnEliminarImagen);
             this.Controls.Add(this.pbxAltaArticulo);
             this.Controls.Add(this.btnAgregarImagen);
             this.Controls.Add(this.lstImagenes);
@@ -333,5 +345,6 @@
         private System.Windows.Forms.ErrorProvider errorProvider2;
         private System.Windows.Forms.ErrorProvider errorProvider3;
         private System.Windows.Forms.ErrorProvider errorProvider4;
+        private System.Windows.Forms.Button btnEliminarImagen;
     }
 }

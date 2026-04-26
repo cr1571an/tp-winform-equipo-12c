@@ -15,9 +15,14 @@ namespace Negocio
         public void eliminar(int id)
         {
             AccesoDatos datos = new AccesoDatos();
+
             try
-            {                
-                datos.setearConsulta("delete from ARTICULOS where id = @id");
+            {
+                ImagenNegocio imagenNegocio = new ImagenNegocio();
+
+                imagenNegocio.eliminarPorArticulo(id);
+
+                datos.setearConsulta("DELETE FROM ARTICULOS WHERE Id = @id");
                 datos.setearParametro("@id", id);
                 datos.ejecutarAccion();
             }
@@ -261,6 +266,7 @@ namespace Negocio
         public void modificar(Articulo articulo)
         {
             AccesoDatos datos = new AccesoDatos();
+
             try
             {
                 datos.setearConsulta("UPDATE ARTICULOS SET Codigo = @codigo, Nombre = @nombre, Descripcion = @descripcion, IdMarca = @iDMarca, IdCategoria = @idCategoria, Precio = @precio WHERE Id = @id");
@@ -274,6 +280,18 @@ namespace Negocio
                 datos.setearParametro("@id", articulo.Id);
 
                 datos.ejecutarAccion();
+
+                ImagenNegocio imagenNegocio = new ImagenNegocio();
+
+                imagenNegocio.eliminarPorArticulo(articulo.Id);
+
+                if (articulo.Imagenes != null)
+                {
+                    foreach (Imagen img in articulo.Imagenes)
+                    {
+                        imagenNegocio.agregar(articulo.Id, img.ImagenUrl);
+                    }
+                }
             }
             catch (Exception ex)
             {
