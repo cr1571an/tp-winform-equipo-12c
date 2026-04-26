@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dominio;
+using Negocio.Datos;
 
 namespace Negocio
 {
@@ -44,9 +45,10 @@ namespace Negocio
             if (string.IsNullOrWhiteSpace(marca.Descripcion))
                 throw new Exception("No escribiste ninguna marca.");
             AccesoDatos datos = new AccesoDatos();
+            ValidadorBD validador = new ValidadorBD();
             try
             {
-                if (datos.registroExiste("MARCAS", "Descripcion", marca.Descripcion))
+                if (validador.registroExiste("MARCAS", "Descripcion", marca.Descripcion))
                     throw new Exception("Ya existe.");
 
                 datos.setearConsulta("INSERT INTO MARCAS (Descripcion) VALUES (@descripcion);");
@@ -69,9 +71,10 @@ namespace Negocio
             if (string.IsNullOrWhiteSpace(marca.Descripcion))
                 throw new Exception("No escribiste ninguna marca.");
             AccesoDatos datos = new AccesoDatos();
+            ValidadorBD validador = new ValidadorBD(); 
             try
             {
-                if (datos.registroExiste("MARCAS", "Descripcion", marca.Descripcion))
+                if (validador.registroExiste("MARCAS", "Descripcion", marca.Descripcion))
                     throw new Exception("Ya existe.");
 
                 datos.setearConsulta("UPDATE MARCAS SET Descripcion = @descripcion WHERE Id = @id;");

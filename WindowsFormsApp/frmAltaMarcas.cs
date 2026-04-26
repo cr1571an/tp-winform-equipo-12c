@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp.Helpers;
 
 namespace WindowsFormsApp
 {
@@ -44,6 +45,8 @@ namespace WindowsFormsApp
             MarcaNegocio negocio = new MarcaNegocio();
             try
             {
+                if (!ValidadorUI.ValidarMaxCaracteres(txtMarca, 50, "Máximo 50 caracteres", errorProvider1)) return;
+                
                 if (marca == null) marca = new Marca();
                 marca.Descripcion = txtMarca.Text;
                 if (marca.Id == 0)

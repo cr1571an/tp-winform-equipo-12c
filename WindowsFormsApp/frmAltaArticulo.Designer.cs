@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblNombre = new System.Windows.Forms.Label();
             this.lblDescripcion = new System.Windows.Forms.Label();
             this.lblPrecio = new System.Windows.Forms.Label();
@@ -48,7 +49,15 @@
             this.lstImagenes = new System.Windows.Forms.ListBox();
             this.btnAgregarImagen = new System.Windows.Forms.Button();
             this.pbxAltaArticulo = new System.Windows.Forms.PictureBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider4 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pbxAltaArticulo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider4)).BeginInit();
             this.SuspendLayout();
             // 
             // lblNombre
@@ -82,6 +91,7 @@
             // 
             this.txtNombre.Location = new System.Drawing.Point(116, 73);
             this.txtNombre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtNombre.MaxLength = 50;
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(173, 22);
             this.txtNombre.TabIndex = 1;
@@ -90,6 +100,7 @@
             // 
             this.txtDescripcion.Location = new System.Drawing.Point(116, 240);
             this.txtDescripcion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtDescripcion.MaxLength = 150;
             this.txtDescripcion.Multiline = true;
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -166,8 +177,10 @@
             // 
             // txtCodigo
             // 
+            this.txtCodigo.BackColor = System.Drawing.Color.White;
             this.txtCodigo.Location = new System.Drawing.Point(116, 35);
             this.txtCodigo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtCodigo.MaxLength = 50;
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(173, 22);
             this.txtCodigo.TabIndex = 0;
@@ -193,6 +206,7 @@
             // txtUrlImagen
             // 
             this.txtUrlImagen.Location = new System.Drawing.Point(116, 341);
+            this.txtUrlImagen.MaxLength = 1000;
             this.txtUrlImagen.Name = "txtUrlImagen";
             this.txtUrlImagen.Size = new System.Drawing.Size(173, 22);
             this.txtUrlImagen.TabIndex = 13;
@@ -200,7 +214,7 @@
             // 
             // btnBuscarImagen
             // 
-            this.btnBuscarImagen.Location = new System.Drawing.Point(300, 341);
+            this.btnBuscarImagen.Location = new System.Drawing.Point(322, 342);
             this.btnBuscarImagen.Name = "btnBuscarImagen";
             this.btnBuscarImagen.Size = new System.Drawing.Size(43, 23);
             this.btnBuscarImagen.TabIndex = 14;
@@ -214,13 +228,13 @@
             this.lstImagenes.ItemHeight = 16;
             this.lstImagenes.Location = new System.Drawing.Point(23, 379);
             this.lstImagenes.Name = "lstImagenes";
-            this.lstImagenes.Size = new System.Drawing.Size(550, 84);
+            this.lstImagenes.Size = new System.Drawing.Size(579, 84);
             this.lstImagenes.TabIndex = 15;
             this.lstImagenes.SelectedIndexChanged += new System.EventHandler(this.lstImagenes_SelectedIndexChanged);
             // 
             // btnAgregarImagen
             // 
-            this.btnAgregarImagen.Location = new System.Drawing.Point(354, 337);
+            this.btnAgregarImagen.Location = new System.Drawing.Point(429, 341);
             this.btnAgregarImagen.Name = "btnAgregarImagen";
             this.btnAgregarImagen.Size = new System.Drawing.Size(173, 30);
             this.btnAgregarImagen.TabIndex = 16;
@@ -230,18 +244,34 @@
             // 
             // pbxAltaArticulo
             // 
-            this.pbxAltaArticulo.Location = new System.Drawing.Point(302, 38);
+            this.pbxAltaArticulo.Location = new System.Drawing.Point(322, 38);
             this.pbxAltaArticulo.Name = "pbxAltaArticulo";
             this.pbxAltaArticulo.Size = new System.Drawing.Size(280, 273);
             this.pbxAltaArticulo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbxAltaArticulo.TabIndex = 17;
             this.pbxAltaArticulo.TabStop = false;
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // errorProvider2
+            // 
+            this.errorProvider2.ContainerControl = this;
+            // 
+            // errorProvider3
+            // 
+            this.errorProvider3.ContainerControl = this;
+            // 
+            // errorProvider4
+            // 
+            this.errorProvider4.ContainerControl = this;
+            // 
             // frmAltaArticulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(602, 539);
+            this.ClientSize = new System.Drawing.Size(633, 539);
             this.Controls.Add(this.pbxAltaArticulo);
             this.Controls.Add(this.btnAgregarImagen);
             this.Controls.Add(this.lstImagenes);
@@ -268,6 +298,10 @@
             this.Text = "Nuevo artículo";
             this.Load += new System.EventHandler(this.frmAltaArticulo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbxAltaArticulo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -295,5 +329,9 @@
         private System.Windows.Forms.ListBox lstImagenes;
         private System.Windows.Forms.Button btnAgregarImagen;
         private System.Windows.Forms.PictureBox pbxAltaArticulo;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.ErrorProvider errorProvider2;
+        private System.Windows.Forms.ErrorProvider errorProvider3;
+        private System.Windows.Forms.ErrorProvider errorProvider4;
     }
 }

@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Dominio;
 using Negocio;
-using System.IO;
-using System.Configuration;
+using WindowsFormsApp.Helpers;
 
 namespace WindowsFormsApp
 {
@@ -93,6 +94,15 @@ namespace WindowsFormsApp
             }
 
             ArticuloNegocio negocio = new ArticuloNegocio();
+            if (!ValidadorUI.ValidarMaxCaracteres(txtCodigo, 50, "Máximo 50 caracteres", errorProvider1)) return;
+            if (!ValidadorUI.ValidarMaxCaracteres(txtNombre, 50, "Máximo 50 caracteres", errorProvider2)) return;
+            if (!decimal.TryParse(txtPrecio.Text, out decimal precio)){
+                errorProvider1.SetError(txtPrecio, "El precio debe ser numérico.");
+                txtPrecio.Focus();
+                return;
+            }
+            else{ errorProvider1.SetError(txtPrecio, "");}
+            if (!ValidadorUI.ValidarMaxCaracteres(txtDescripcion, 150, "Máximo 150 caracteres", errorProvider4)) return;
 
             try
             {   
