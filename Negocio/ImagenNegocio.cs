@@ -40,7 +40,6 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-
         public List<Imagen> listarPorArticulo(int idArticulo)
         {
             List<Imagen> lista = new List<Imagen>();
@@ -82,6 +81,25 @@ namespace Negocio
                 datos.setearConsulta("INSERT INTO IMAGENES (IdArticulo, ImagenUrl) VALUES (@idArticulo, @imagenUrl)");
                 datos.setearParametro("@idArticulo", idArticulo);
                 datos.setearParametro("@imagenUrl", imagenUrl);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void eliminarPorArticulo(int idArticulo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("DELETE FROM IMAGENES WHERE IdArticulo = @idArticulo");
+                datos.setearParametro("@idArticulo", idArticulo);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)

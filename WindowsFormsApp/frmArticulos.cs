@@ -261,5 +261,32 @@ namespace WindowsFormsApp
                 lblImagenActual.Text = (indiceImagen + 1) + " / " + articuloSeleccionado.Imagenes.Count;
             }
         }
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.CurrentRow == null)
+                return;
+
+            Articulo seleccionado = (Articulo)dataGridView1.CurrentRow.DataBoundItem;
+
+            frmConfirmarEliminacion confirmacion = new frmConfirmarEliminacion(
+                "¿Seguro que querés eliminar el artículo?"
+            );
+
+            if (confirmacion.ShowDialog() == DialogResult.OK)
+            {
+                ArticuloNegocio negocio = new ArticuloNegocio();
+
+                try
+                {
+                    negocio.eliminar(seleccionado.Id);
+                    MessageBox.Show("Artículo eliminado correctamente");
+                    cargar();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
+        }
     }
 }

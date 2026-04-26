@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Configuration;
 using System.Data;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -152,6 +150,7 @@ namespace WindowsFormsApp
             txtUrlImagen.Enabled = false;
             btnBuscarImagen.Enabled = false;
             btnAgregarImagen.Enabled = false;
+            btnEliminarImagen.Enabled = false;
             lstImagenes.Enabled = false;
         }
         private void cargarImagen(string imagen)
@@ -199,6 +198,29 @@ namespace WindowsFormsApp
 
             cargarImagen(txtUrlImagen.Text);
             txtUrlImagen.Clear();
+        }
+        private void btnEliminarImagen_Click(object sender, EventArgs e)
+        {
+            if (lstImagenes.SelectedIndex < 0)
+            {
+                MessageBox.Show("Seleccioná una imagen para eliminar.");
+                return;
+            }
+
+            int indice = lstImagenes.SelectedIndex;
+
+            imagenesArticulo.RemoveAt(indice);
+            lstImagenes.Items.RemoveAt(indice);
+
+            if (lstImagenes.Items.Count > 0)
+            {
+                lstImagenes.SelectedIndex = 0;
+                cargarImagen(lstImagenes.SelectedItem.ToString());
+            }
+            else
+            {
+                cargarImagen("");
+            }
         }
         private void lstImagenes_SelectedIndexChanged(object sender, EventArgs e)
         {

@@ -105,6 +105,7 @@
             this.btnEliminar.TabIndex = 3;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnVer
             // 
@@ -225,7 +226,7 @@
             this.ayudaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1179, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1179, 30);
             this.menuStrip1.TabIndex = 5;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -318,9 +319,9 @@
             this.lblImagenActual.ForeColor = System.Drawing.SystemColors.ControlDark;
             this.lblImagenActual.Location = new System.Drawing.Point(946, 105);
             this.lblImagenActual.Name = "lblImagenActual";
-            this.lblImagenActual.Size = new System.Drawing.Size(37, 16);
+            this.lblImagenActual.Size = new System.Drawing.Size(31, 16);
             this.lblImagenActual.TabIndex = 18;
-            this.lblImagenActual.Text = "GGG";
+            this.lblImagenActual.Text = "0 / 0";
             // 
             // frmArticulos
             // 
