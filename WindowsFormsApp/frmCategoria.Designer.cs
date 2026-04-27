@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApp
 {
-    partial class frmMarcas
+    partial class frmCategorias
     {
         /// <summary>
         /// Required designer variable.
@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.lblMarcas = new System.Windows.Forms.Label();
-            this.dgvMarcas = new System.Windows.Forms.DataGridView();
+            this.lblCategorias = new System.Windows.Forms.Label();
+            this.dgvCategorias = new System.Windows.Forms.DataGridView();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnVolver = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
-            this.txtMarca = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMarcas)).BeginInit();
+            this.txtCategoria = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCategorias)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -48,29 +48,29 @@
             this.label1.Size = new System.Drawing.Size(133, 28);
             this.label1.TabIndex = 0;
             // 
-            // lblMarcas
+            // lblCategorias
             // 
-            this.lblMarcas.AutoSize = true;
-            this.lblMarcas.Location = new System.Drawing.Point(69, 46);
-            this.lblMarcas.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblMarcas.Name = "lblMarcas";
-            this.lblMarcas.Size = new System.Drawing.Size(45, 16);
-            this.lblMarcas.TabIndex = 2;
-            this.lblMarcas.Text = "Marca";
+            this.lblCategorias.AutoSize = true;
+            this.lblCategorias.Location = new System.Drawing.Point(37, 47);
+            this.lblCategorias.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCategorias.Name = "lblCategorias";
+            this.lblCategorias.Size = new System.Drawing.Size(66, 16);
+            this.lblCategorias.TabIndex = 2;
+            this.lblCategorias.Text = "Categoria";
             // 
-            // dgvMarcas
+            // dgvCategorias
             // 
-            this.dgvMarcas.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dgvMarcas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMarcas.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvMarcas.Location = new System.Drawing.Point(65, 110);
-            this.dgvMarcas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.dgvMarcas.MultiSelect = false;
-            this.dgvMarcas.Name = "dgvMarcas";
-            this.dgvMarcas.RowHeadersWidth = 51;
-            this.dgvMarcas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMarcas.Size = new System.Drawing.Size(204, 185);
-            this.dgvMarcas.TabIndex = 6;
+            this.dgvCategorias.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dgvCategorias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCategorias.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvCategorias.Location = new System.Drawing.Point(65, 110);
+            this.dgvCategorias.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvCategorias.MultiSelect = false;
+            this.dgvCategorias.Name = "dgvCategorias";
+            this.dgvCategorias.RowHeadersWidth = 51;
+            this.dgvCategorias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvCategorias.Size = new System.Drawing.Size(204, 185);
+            this.dgvCategorias.TabIndex = 6;
             // 
             // btnModificar
             // 
@@ -107,8 +107,8 @@
             // 
             // btnVolver
             // 
-            this.btnVolver.Location = new System.Drawing.Point(65, 410);
-            this.btnVolver.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnVolver.Location = new System.Drawing.Point(65, 409);
+            this.btnVolver.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(204, 28);
             this.btnVolver.TabIndex = 10;
@@ -127,15 +127,15 @@
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click_1);
             // 
-            // txtMarca
+            // txtCategoria
             // 
-            this.txtMarca.Location = new System.Drawing.Point(115, 43);
-            this.txtMarca.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtMarca.Name = "txtMarca";
-            this.txtMarca.Size = new System.Drawing.Size(155, 22);
-            this.txtMarca.TabIndex = 8;
+            this.txtCategoria.Location = new System.Drawing.Point(115, 43);
+            this.txtCategoria.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCategoria.Name = "txtCategoria";
+            this.txtCategoria.Size = new System.Drawing.Size(155, 22);
+            this.txtCategoria.TabIndex = 8;
             // 
-            // frmMarcas
+            // frmCategorias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -145,18 +145,18 @@
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.btnAgregar);
-            this.Controls.Add(this.txtMarca);
-            this.Controls.Add(this.dgvMarcas);
-            this.Controls.Add(this.lblMarcas);
+            this.Controls.Add(this.txtCategoria);
+            this.Controls.Add(this.dgvCategorias);
+            this.Controls.Add(this.lblCategorias);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
-            this.Name = "frmMarcas";
+            this.Name = "frmCategorias";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Gestion Marcas";
-            this.Load += new System.EventHandler(this.frmMarcas_Load_1);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMarcas)).EndInit();
+            this.Text = "Gestion Categorias";
+            this.Load += new System.EventHandler(this.frmCategorias_Load_1);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCategorias)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -164,13 +164,13 @@
 
         #endregion
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lblMarcas;
-        private System.Windows.Forms.DataGridView dgvMarcas;
+        private System.Windows.Forms.Label lblCategorias;
+        private System.Windows.Forms.DataGridView dgvCategorias;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnVolver;
         private System.Windows.Forms.Button btnAgregar;
-        private System.Windows.Forms.TextBox txtMarca;
+        private System.Windows.Forms.TextBox txtCategoria;
     }
 }

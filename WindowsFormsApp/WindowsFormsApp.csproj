@@ -48,11 +48,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmAcercaDe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAcercaDe.Designer.cs">
+      <DependentUpon>frmAcercaDe.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmAltaArticulo.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmAltaArticulo.Designer.cs">
       <DependentUpon>frmAltaArticulo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAltaCategorias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAltaCategorias.Designer.cs">
+      <DependentUpon>frmAltaCategorias.cs</DependentUpon>
     </Compile>
     <Compile Include="frmAltaMarcas.cs">
       <SubType>Form</SubType>
@@ -65,6 +77,12 @@
     </Compile>
     <Compile Include="frmArticulos.Designer.cs">
       <DependentUpon>frmArticulos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCategoria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCategoria.Designer.cs">
+      <DependentUpon>frmCategoria.cs</DependentUpon>
     </Compile>
     <Compile Include="frmConfirmarEliminacion.cs">
       <SubType>Form</SubType>
@@ -81,14 +99,23 @@
     <Compile Include="Helper\Validador.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmAcercaDe.resx">
+      <DependentUpon>frmAcercaDe.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAltaArticulo.resx">
       <DependentUpon>frmAltaArticulo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAltaCategorias.resx">
+      <DependentUpon>frmAltaCategorias.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAltaMarcas.resx">
       <DependentUpon>frmAltaMarcas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmArticulos.resx">
       <DependentUpon>frmArticulos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCategoria.resx">
+      <DependentUpon>frmCategoria.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmConfirmarEliminacion.resx">
       <DependentUpon>frmConfirmarEliminacion.cs</DependentUpon>

@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApp
 {
-    partial class frmAltaMarcas
+    partial class frmAltaCategorias
     {
         /// <summary>
         /// Required designer variable.
@@ -32,25 +32,26 @@
             this.lblMensaje = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
-            this.txtMarca = new System.Windows.Forms.TextBox();
+            this.txtCategoria = new System.Windows.Forms.TextBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblMensaje
             // 
-            this.lblMensaje.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblMensaje.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMensaje.Location = new System.Drawing.Point(0, 0);
+            this.lblMensaje.AutoSize = true;
+            this.lblMensaje.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMensaje.Location = new System.Drawing.Point(87, 31);
             this.lblMensaje.Name = "lblMensaje";
-            this.lblMensaje.Size = new System.Drawing.Size(369, 70);
+            this.lblMensaje.Size = new System.Drawing.Size(177, 25);
             this.lblMensaje.TabIndex = 7;
-            this.lblMensaje.Text = "Mensaje                  ";
-            this.lblMensaje.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblMensaje.Text = "                                 ";
+            this.lblMensaje.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(195, 110);
+            this.btnCancelar.Location = new System.Drawing.Point(185, 118);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(117, 37);
             this.btnCancelar.TabIndex = 6;
@@ -60,7 +61,8 @@
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(56, 110);
+            this.btnAceptar.Location = new System.Drawing.Point(45, 118);
+            this.btnAceptar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(117, 37);
             this.btnAceptar.TabIndex = 5;
@@ -68,33 +70,35 @@
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
-            // txtMarca
+            // txtCategoria
             // 
-            this.txtMarca.Location = new System.Drawing.Point(102, 65);
-            this.txtMarca.MaxLength = 51;
-            this.txtMarca.Name = "txtMarca";
-            this.txtMarca.Size = new System.Drawing.Size(171, 22);
-            this.txtMarca.TabIndex = 4;
+            this.txtCategoria.Location = new System.Drawing.Point(92, 73);
+            this.txtCategoria.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtCategoria.Name = "txtCategoria";
+            this.txtCategoria.Size = new System.Drawing.Size(171, 22);
+            this.txtCategoria.TabIndex = 4;
+            this.txtCategoria.TextChanged += new System.EventHandler(this.txtCategoria_TextChanged);
             // 
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // frmAltaMarcas
+            // frmAltaCategorias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(369, 201);
+            this.ClientSize = new System.Drawing.Size(369, 222);
             this.Controls.Add(this.lblMensaje);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
-            this.Controls.Add(this.txtMarca);
+            this.Controls.Add(this.txtCategoria);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
-            this.Name = "frmAltaMarcas";
+            this.Name = "frmAltaCategorias";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Marca";
-            this.Load += new System.EventHandler(this.frmAltaMarcas_Load);
+            this.Text = "frmAltaCategorias";
+            this.Load += new System.EventHandler(this.frmAltaCategorias_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -106,7 +110,7 @@
         private System.Windows.Forms.Label lblMensaje;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnAceptar;
-        private System.Windows.Forms.TextBox txtMarca;
+        private System.Windows.Forms.TextBox txtCategoria;
         private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

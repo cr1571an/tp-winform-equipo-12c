@@ -1,4 +1,5 @@
 ﻿using Dominio;
+using Negocio.Datos;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -305,9 +306,13 @@ namespace Negocio
         public void agregar(Articulo nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
+            ValidadorBD validador = new ValidadorBD();
 
             try
             {
+                if (validador.registroExiste("ARTICULOS", "Codigo", nuevo.Codigo))
+                    throw new Exception("Ya existe el codigo del articulo en la db.");
+
                 datos.setearConsulta("INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio) OUTPUT INSERTED.Id VALUES (@codigo, @nombre, @descripcion, @idMarca, @idCategoria, @precio)");
 
                 datos.setearParametro("@codigo", nuevo.Codigo);

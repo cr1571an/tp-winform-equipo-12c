@@ -96,12 +96,41 @@ namespace Negocio
         public void eliminar(int id)
         {
             AccesoDatos datos = new AccesoDatos();
+            ArticuloNegocio articuloNegocio = new ArticuloNegocio();
             try
             {
+                List<Articulo> articulos = articuloNegocio.Listar().Where(a => a.Marca.Id == id).ToList();
+
+                foreach (var articulo in articulos)
+                {
+                    articuloNegocio.eliminar(articulo.Id);
+                }
+
                 datos.setearConsulta("DELETE FROM MARCAS WHERE Id = @id;");
                 datos.setearParametro("@id", id);
 
                 datos.ejecutarAccion();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public bool existe(string descripcion)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("SELECT [Id] ,[Descripcion] FROM [CATALOGO_P3_DB].[dbo].[MARCAS] where Descripcion = @descripcion");
+                datos.setearParametro("@descripcion", descripcion);
+
+                datos.ejecutarLectura();
+                return datos.Lector.Read();
             }
             catch (Exception)
             {
